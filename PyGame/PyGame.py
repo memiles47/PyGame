@@ -16,6 +16,12 @@ PrintBoard()
 while True:
     choice = int(input("Enter your move (1-9): "))
 
+    if choice < 1 or choice > 9:
+        print()
+        print("Invalid choice")
+        PrintBoard()
+        continue
+
     if board[choice - 1] == " ":
         board[choice -1] = "X"
     else:
