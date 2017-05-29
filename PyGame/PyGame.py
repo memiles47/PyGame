@@ -11,22 +11,62 @@ def PrintBoard():
     print(row3)
     print()
 
-PrintBoard()
+def PlayerMove(icon):
+    if icon == "X":
+        number = 1
+    elif icon == "O":
+        number = 2
 
-while True:
+    print("Your turn player {}: ".format(number))
+
     choice = int(input("Enter your move (1-9): "))
 
-    if choice < 1 or choice > 9:
-        print()
-        print("Invalid choice")
-        PrintBoard()
-        continue
+    #if choice < 1 or choice > 9:
+    #   print()
+    #    print("Invalid choice")
+    #    PrintBoard()
+    #    continue
 
     if board[choice - 1] == " ":
-        board[choice -1] = "X"
+        board[choice -1] = icon
     else:
         print()
         print("That space is taken!")
 
-    PrintBoard()
+def IsVictory(icon):
+    if  (board[0] == icon and board[1] == icon and board[2] == icon) or \
+        (board[3] == icon and board[4] == icon and board[5] == icon) or \
+        (board[6] == icon and board[7] == icon and board[8] == icon) or \
+        (board[0] == icon and board[3] == icon and board[6] == icon) or \
+        (board[1] == icon and board[4] == icon and board[7] == icon) or \
+        (board[2] == icon and board[5] == icon and board[8] == icon) or \
+        (board[0] == icon and board[4] == icon and board[8] == icon) or \
+        (board[2] == icon and board[4] == icon and board[6] == icon):
+        return True
+    else:
+        return False
 
+def IsDraw():
+    if " " not in board:
+        return True
+    else:
+        return False
+
+while True:
+    PrintBoard()
+    PlayerMove("X")
+    PrintBoard()
+    if IsVictory("X"):
+        print("X Wins! Contratulations!")
+        break
+    elif IsDraw():
+        print("It's a Draw!")
+        break
+
+    PlayerMove("O")
+    if IsVictory("O"):
+        print("O Wins! Contratulations!")
+        break
+    elif IsDraw():
+        print("It's a Draw!")
+        break
