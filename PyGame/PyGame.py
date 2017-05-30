@@ -21,18 +21,19 @@ def PlayerMove(icon):
 
     choice = int(input("Enter your move (1-9): "))
 
-    #Incorporate invalid choice code as a function
-    #if choice < 1 or choice > 9:
-    #   print()
-    #    print("Invalid choice")
-    #    PrintBoard()
-    #    continue
+    if choice < 1:
+        print()
+        print("Invalid choice")
+        PrintBoard()
+        PlayerMove(icon)
 
     if board[choice - 1] == " ":
-        board[choice -1] = icon
+        board[choice - 1] = icon
     else:
         print()
         print("That space is taken!")
+        PrintBoard()
+        PlayerMove(icon)
 
 def IsVictory(icon):
     if  (board[0] == icon and board[1] == icon and board[2] == icon) or \
