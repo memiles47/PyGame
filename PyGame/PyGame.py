@@ -21,6 +21,7 @@ def PlayerMove(icon):
 
     choice = int(input("Enter your move (1-9): "))
 
+    #Incorporate invalid choice code as a function
     #if choice < 1 or choice > 9:
     #   print()
     #    print("Invalid choice")
